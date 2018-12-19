@@ -1,0 +1,43 @@
+{
+  "name": "prime-streaming",
+  "version": "1.0.0",
+  "description": "streams prime numbers as fast as possible",
+  "main": "index.js",
+  "scripts": {
+    "clean": "gulp clean",
+    "test": "mocha --timeout 15000 code/test/**/*",
+    "coverage": "nyc --check-coverage mocha code/test/**/*",
+    "test-mocha-report": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./test-reports/mocha/test-results.xml code/test/**/*",
+    "test-watch": "mocha --timeout 15000 --watch code/test/**/*.js",
+    "rebuild-npm": "gulp remove-npm && npm i"
+  },
+  "author": "ericchase",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0",
+    "nyc": "^13.1.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "all": true,
+    "include": [
+      "code/src/**/*"
+    ],
+    "exclude": [
+      "code/src/**/*.spec.*"
+    ],
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "report-dir": "./test-reports/nyc",
+    "temp-dir": "./test-reports-tmp/nyc",
+    "cache": true
+  }
+}
